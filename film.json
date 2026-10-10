@@ -1,0 +1,110 @@
+{
+ "fps": 60,
+ "tier": "ultra",
+ "samples": 16,
+ "title": "The Generations of Adam - Genesis 5",
+ "scenes": [
+  {
+   "id": "00",
+   "scene": "s00-title",
+   "from": 0,
+   "to": 24.77,
+   "hold": "the title and the two-line opening over the instrumental, one continuous move round the first flame"
+  },
+  {
+   "id": "01",
+   "scene": "s01-adam",
+   "from": 24.77,
+   "to": 45.22,
+   "hold": "one walk up the road from Adam's stone to Seth's: the verse is one journey"
+  },
+  {
+   "id": "02",
+   "scene": "s02-chorus-shelf",
+   "from": 45.22,
+   "to": 67.72,
+   "hold": "the flame travels the whole shelf, lamp to lamp, in one take"
+  },
+  {
+   "id": "03",
+   "scene": "s03-enos",
+   "from": 67.72,
+   "to": 78.63,
+   "hold": "one glide past three stones"
+  },
+  {
+   "id": "04",
+   "scene": "s04-homes",
+   "from": 78.63,
+   "to": 88.86,
+   "hold": "one crane up from the inscribed ledge over the homes of the valley"
+  },
+  {
+   "id": "05",
+   "scene": "s05-chorus-spiral",
+   "from": 88.86,
+   "to": 111.35,
+   "hold": "one descent over the spiral of lamps as it lights",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  },
+  {
+   "id": "06",
+   "scene": "s06-count",
+   "from": 111.35,
+   "to": 133.14,
+   "hold": "one glide past four stones under the turning stars",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  },
+  {
+   "id": "07",
+   "scene": "s07-doorway",
+   "from": 133.14,
+   "to": 154.25,
+   "hold": "one move from the gate to the door and round to the path",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  },
+  {
+   "id": "08",
+   "scene": "s08-chorus-niches",
+   "from": 154.25,
+   "to": 177.05,
+   "hold": "one walk down the hall of niches as they light"
+  },
+  {
+   "id": "09",
+   "scene": "s09-enoch",
+   "from": 177.05,
+   "to": 200.49,
+   "hold": "one climb along the footprints to where they end and the cloud opens",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak",
+   "offBeat": "the cut waits for the chorus's held last note to end, then Enoch is sung"
+  },
+  {
+   "id": "10",
+   "scene": "s11-lamech",
+   "from": 200.49,
+   "to": 224.74,
+   "hold": "one move from the two stones across the road into Lamech's field to the plough",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  },
+  {
+   "id": "11",
+   "scene": "s13-noe",
+   "from": 224.74,
+   "to": 250.3,
+   "hold": "one continuous sunrise move from Noe's stone to the three lamps",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  },
+  {
+   "id": "12",
+   "scene": "s14-road-goes-on",
+   "from": 250.3,
+   "to": 278.52,
+   "hold": "the ending: three lights leave and the camera rises to the last sound",
+   "rest": "the camera keeps walking or gliding at the cuts; only its mid-shot turn or transit is faster, so the ends measure low against that peak"
+  }
+ ],
+ "lyric": {
+  "note": "every word is cut into the world (stone, rock, clay, wood, dust); no lyric layers"
+ }
+}

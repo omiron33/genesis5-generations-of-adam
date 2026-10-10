@@ -1,0 +1,8 @@
+{
+  "name": "genesis5-generations-of-adam",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Code-rendered lyric film of The Generations of Adam (Genesis 5)",
+  "license": "MIT"
+}

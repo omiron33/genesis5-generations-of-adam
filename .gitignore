@@ -1,0 +1,12 @@
+.DS_Store
+._*
+node_modules/
+out/
+media/
+movies/
+.dashboard/
+intake/*
+!intake/sung-lyrics.txt
+.env
+.env.*
+*.log
