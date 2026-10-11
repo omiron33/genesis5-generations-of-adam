@@ -41,7 +41,7 @@ export default (P) => {
   const rect = [X0 + 2.0, Z0 - 2.4, X0 - 2.0, Z0 + 0.6];
   const cam = track([
     { t: P.from, pos: [X0 - 0.5, groundY(X0, Z0) + 1.7, Z0 - 6.5], look: [X0, groundY(X0, Z0) + 0.2, Z0 - 0.5] },
-    { t: L[2].start + 0.9, pos: [X0 - 0.2, groundY(X0, Z0) + 2.3, Z0 - 6.0], look: [X0, groundY(X0, Z0) + 0.4, Z0 + 1.5] },
+    { t: L[2].start + 1.4, pos: [X0 - 0.3, groundY(X0, Z0) + 2.6, Z0 - 7.0], look: [X0, groundY(X0, Z0) + 0.2, Z0 + 0.5] },
     { t: L[3].start + 1.6, pos: [RX + 3.6, ry + 1.8, RZ - 3.0], look: [RX, ry + 0.6, RZ] },
     { t: L[4].start + 0.6, pos: [RX + 4.0, ry + 2.3, RZ - 3.6], look: [RX - 0.2, ry + 0.5, RZ + 0.2] },
     { t: L[4].start + 2.6, pos: [RX + 4.6, ry + 3.4, RZ - 5.0], look: [RX - 0.6, ry + 0.4, RZ + 1.5] },
@@ -49,7 +49,7 @@ export default (P) => {
     { t: P.to, pos: [RX + 6.0, ry + 16.0, RZ - 14.0], look: [roadX(RZ + 90), 4.0, RZ + 90] },
   ], { handheld: { amount: 0.7, seed: 121 }, fov: 46, aperture: 0.002 });
   return valleyScene(P, {
-    name: 's14-road-goes-on', cam, ink: 2.4, cols: 2,
+    name: 's14-road-goes-on', cam, ink: 0.7, cols: 2,
     sky: (t) => ({ ...SKIES.sunrise, uSunDir: [0.15, 0.13, 1.0], uSunCol: [3.0 - 1.2 * smooth((t - 262) / 12), 1.7 - 0.6 * smooth((t - 262) / 12), 0.85 - 0.25 * smooth((t - 262) / 12)] }),
     slots: {},
     extraCols: [0, 1],
@@ -59,13 +59,14 @@ export default (P) => {
       for (let i = 0; i < 3; i++) {
         const w = walker(i, t); for (let j = 0; j < 3; j++) u.uWalkers.value[i * 3 + j] = w[j];
         const f = front(i, t); for (let j = 0; j < 3; j++) u.uFronts.value[i * 3 + j] = f[j];
+        const e = onGround(paths[i](0.012)); for (let j = 0; j < 3; j++) u.uGrooves.value[i * 3 + j] = e[j];
         for (let k = 0; k < 8; k++) { const g = glow(i, k, t); for (let j = 0; j < 3; j++) u.uGlows.value[(i * 8 + k) * 3 + j] = g[j]; }
       }
     },
     words(ctx, t, col) {
       if (col === 1) { surface(ctx, 1, LEDGE_W, LEDGE_H, (c, b) => inscribe(c, t, [{ words: L[3].words, older: true }, { words: L[4].words }], { x: b.x + 50, y: b.y + 40, w: b.w - 100, h: b.h - 80 }, { size: 96, leading: 1.4, valign: 'middle', fade: (l, tt) => (l.older ? 1 - 0.55 * smooth((tt - L[4].start) / 0.8) : 1) })); return; }
       const W = Math.abs(rect[2] - rect[0]), H = rect[3] - rect[1];
-      surface(ctx, 0, W, H, (c, b) => inscribe(c, t, L.slice(0, 3).map((l) => ({ words: l.words })), { x: b.x + 40, y: b.y + 40, w: b.w - 80, h: b.h - 80 }, { size: 120, leading: 1.5, font: 'italic', valign: 'middle' }));
+      surface(ctx, 0, W, H, (c, b) => inscribe(c, t, L.slice(0, 3).map((l) => ({ words: l.words })), { x: b.x + 40, y: b.y + 40, w: b.w - 80, h: b.h - 80 }, { size: 150, leading: 1.4, font: 'italic', valign: 'middle' }));
     },
     post: (t) => grade({ exposure: 1.05 - 0.3 * smooth((t - 262) / 10), bloom: 0.08, threshold: 1.3 }),
     finish: () => FINISH,

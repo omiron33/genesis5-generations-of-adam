@@ -16,16 +16,18 @@ export default (P) => {
   const s = [2, 3, 4].map(stone);
   const at = (st, d, side = 0, y = 0) => [st.face[0] + st.n[0] * d - st.n[2] * side, st.face[1] + 0.35 + y, st.face[2] + st.n[2] * d + st.n[0] * side];
   const on = (st, y = 0) => [st.face[0], st.face[1] - 0.3 + y, st.face[2]];
+  // Enos's stone holds the first three lines, read close; a glide to Cainan's for the fourth, with
+  // Maleleel's lamp catching on the stone beyond
   const cam = track([
-    { t: P.from, pos: at(s[0], 5.0, -2.4, 0.3), look: on(s[0], 0.3) },
-    { t: L[1].start + 0.3, pos: at(s[0], 3.3, 0.0, 0.1), look: on(s[0], 0.0) },
-    { t: L[2].start + 0.5, pos: at(s[1], 3.6, -0.8, 0.2), look: on(s[1], 0.1) },
-    { t: L[3].start + 0.9, pos: at(s[2], 4.0, -0.6, 0.2), look: on(s[2], 0.15) },
-    { t: P.to, pos: at(s[2], 4.2, 0.9, 0.2), look: on(s[2], 0.15) },
+    { t: P.from, pos: at(s[0], 4.6, -1.6, 0.25), look: on(s[0], 0.35) },
+    { t: 69.6, pos: at(s[0], 3.0, -0.2, 0.1), look: on(s[0], 0.25) },
+    { t: 74.6, pos: at(s[0], 2.8, 0.35, 0.05), look: on(s[0], 0.15) },
+    { t: 76.4, pos: at(s[1], 3.6, -0.7, 0.2), look: on(s[1], 0.25) },
+    { t: P.to, pos: at(s[1], 3.0, 0.4, 0.1), look: on(s[1], 0.15) },
   ], { handheld: { amount: 0.8, seed: 71 }, fov: 44, aperture: 0.004 });
   const names = ['ENOS', 'CAINAN', 'MALELEEL'];
   const nameWord = [wordOf([L[0]], /^Enos/), wordOf([L[2]], /^Cainan/), wordOf([L[3]], /^Maleleel/)];
-  const text = [wrap([L[0], L[1]], 30), wrap([L[2]], 30), wrap([L[3]], 30)];
+  const text = [wrap([L[0], L[1], L[2]], 30), wrap([L[3]], 26), []];
   return valleyScene(P, {
     name: 's03-enos', cam,
     sky: (t) => skyMix('dusk', 'twilight', 0.45 + 0.35 * smooth((t - P.from) / (P.to - P.from))),

@@ -17,17 +17,20 @@ export default (P) => {
   // a point in front of a stone's face: d metres out, side metres to the right as you face it, eye height y
   const at = (s, d, side = 0, y = 0) => [s.face[0] + s.n[0] * d - s.n[2] * side, s.face[1] + 0.35 + y, s.face[2] + s.n[2] * d + s.n[0] * side];
   const on = (s, y = 0) => [s.face[0], s.face[1] + y, s.face[2]];
+  // Adam's stone holds everything up to "the days went on like weather", read close and square-on;
+  // then a fast glide up the road under racing cloud to Seth's stone for the last line
   const cam = track([
-    { t: P.from, pos: at(s0, 6.2, -2.2, 0.1), look: on(s0, 0.45) },
-    { t: 27.6, pos: at(s0, 3.5, -0.7), look: on(s0, 0.3) },
-    { t: 31.6, pos: at(s0, 2.6, 0.25), look: on(s0, 0.02) },
-    { t: 34.4, pos: [s0.x - 3.0, s0.y + 1.7, s0.z + 4.5], look: [s1.face[0] + 1.5, s1.face[1] + 0.9, s1.face[2] + 3] },
-    { t: 37.4, pos: at(s1, 3.8, -0.9), look: on(s1, 0.3) },
-    { t: 41.2, pos: at(s1, 2.8, 0.05), look: on(s1, 0.05) },
-    { t: P.to, pos: at(s1, 2.35, 0.55), look: on(s1, -0.12) },
+    { t: P.from, pos: at(s0, 6.0, -2.0, 0.1), look: on(s0, 0.45) },
+    { t: 26.8, pos: at(s0, 3.4, -0.6), look: on(s0, 0.35) },
+    { t: 30.0, pos: at(s0, 3.0, -0.1, 0.1), look: on(s0, 0.3) },
+    { t: 36.5, pos: at(s0, 2.8, 0.25, 0.05), look: on(s0, 0.2) },
+    { t: 40.2, pos: at(s0, 2.9, 0.45), look: on(s0, 0.05) },
+    { t: 41.6, pos: [s0.x - 3.0, s0.y + 1.75, s0.z + 6.5], look: [s1.face[0], s1.face[1] + 0.6, s1.face[2]] },
+    { t: 43.0, pos: at(s1, 3.3, -0.5), look: on(s1, 0.2) },
+    { t: P.to, pos: at(s1, 2.7, 0.2), look: on(s1, 0.0) },
   ], { handheld: { amount: 0.9, seed: 3 }, fov: 42, aperture: 0.004 });
-  const aL = wrap(A.lines.map((l) => ({ words: l.words })), 36);
-  const sL = wrap(S.lines.map((l) => ({ words: l.words })), 36);
+  const aL = wrap([...A.lines, S.lines[0], S.lines[1], S.lines[2]].map((l) => ({ words: l.words })), 34);
+  const sL = wrap([S.lines[3]].map((l) => ({ words: l.words })), 24);
   const nameA = wordOf(A.lines, /^Adam/), nameS = wordOf(S.lines, /^Seth/);
   return valleyScene(P, {
     name: 's01-adam', cam, ink: 1.4,
@@ -37,7 +40,7 @@ export default (P) => {
     words(ctx, t, col, box) {
       const [lines, name] = col === 0 ? [aL, nameA] : [sL, nameS];
       inscribe(ctx, t, [{ words: [{ ...name, w: col === 0 ? 'ADAM' : 'SETH' }] }], { x: box.x + 60, y: 120, w: box.w - 120, h: 300 }, { size: 230, font: 'caps', tracking: 0.08 });
-      inscribe(ctx, t, lines, { x: box.x + 70, y: 470, w: box.w - 140, h: 1500 }, { size: 78, leading: 1.32 });
+      inscribe(ctx, t, lines, { x: box.x + 60, y: 440, w: box.w - 120, h: 1550 }, col === 0 ? { size: 74, leading: 1.36 } : { size: 110, leading: 1.3 });
     },
     update(t, u) { u.uCloudSpeed.value = 0.035 + 0.11 * smooth((t - 40.4) / 3); },
     post: () => grade({ exposure: 1.15 }),

@@ -18,13 +18,14 @@ export default (P) => {
   const size = [Math.round((rect[2] - rect[0]) * PX), Math.round((rect[3] - rect[1]) * PX)];
   // canvas x runs from the right end (x = 12.6) to the left (x = 0) as you face the front wall
   const wx = (x) => (rect[2] - x) * PX;
-  const catchT = C.lines.map((l) => l.start - 0.15);
-  const keys = [{ t: P.from, pos: [-1.2, 1.55, 1.45], look: [NICHE_X(0) + 0.4, 1.7, 3.2] }];
-  C.lines.forEach((l, j) => {
-    keys.push({ t: l.start + 0.6, pos: [NICHE_X(j) - 1.15, 1.56, 1.25], look: [NICHE_X(j) + 0.15, 1.82, 3.2] });
-  });
-  keys.push({ t: P.to, pos: [NICHE_X(5) - 0.2, 1.5, 1.0], look: [NICHE_X(5) + 0.5, 1.9, 3.2] });
-  const cam = track(keys, { handheld: { amount: 0.9, seed: 41, metres: 0.8 }, fov: 50, aperture: 0.006 });
+  const catchT = C.lines.map((l, j) => (j === 0 ? P.from - 1.0 : l.start - 0.15));
+  // the lines follow one another with no gap, so the camera stands well back from the front wall with a
+  // wide lens, keeping the niche being sung and the next one both in frame, and walks steadily on,
+  // a little ahead of the singing
+  const keys = [{ t: P.from, pos: [NICHE_X(0) - 0.9, 1.5, 0.4], look: [NICHE_X(0) - 0.9, 1.84, 3.2] }];
+  C.lines.forEach((l, j) => keys.push({ t: l.start + 0.3, pos: [NICHE_X(j) - 0.55, 1.5, 0.35], look: [NICHE_X(j) - 0.55, 1.84, 3.2] }));
+  keys.push({ t: P.to, pos: [NICHE_X(5) + 0.9, 1.5, 0.4], look: [NICHE_X(5) + 0.9, 1.8, 3.2] });
+  const cam = track(keys, { handheld: { amount: 0.8, seed: 41, metres: 0.8 }, fov: 62, aperture: 0.004 });
   return hallScene(P, {
     name: 's08-chorus-niches', cam,
     lit: () => new Array(10).fill(0.8),
@@ -33,7 +34,7 @@ export default (P) => {
     amb: [0.004, 0.0035, 0.0035],
     text: {
       mode: 2, rect, size,
-      draw(ctx, t) { C.lines.forEach((l, j) => inscribe(ctx, t, [{ words: l.words }], { x: wx(NICHE_X(j) + 0.85), y: 40, w: 1.7 * PX, h: 380 }, { size: 150 })); },
+      draw(ctx, t) { C.lines.forEach((l, j) => inscribe(ctx, t, [{ words: l.words }], { x: wx(NICHE_X(j) + 0.85), y: 40, w: 1.7 * PX, h: 380 }, { size: 125 })); },
     },
     post: () => grade({ exposure: 1.1, bloom: 0.2 }),
     finish: () => FINISH,

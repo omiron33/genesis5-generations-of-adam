@@ -18,10 +18,10 @@ export default (P) => {
   // the face looks toward +x (the road); the camera stands on the road looking -x over it at the slope
   const cam = track([
     { t: P.from, pos: [LX + 3.4, gy + 1.15, LZ + 0.9], look: [LX - 0.2, gy + 0.6, LZ + 0.1] },
-    { t: L[1].start + 0.4, pos: [LX + 3.1, gy + 1.5, LZ - 0.2], look: [LX - 0.4, gy + 0.65, LZ] },
-    { t: L[2].start + 0.2, pos: [LX + 4.6, gy + 3.2, LZ - 1.0], look: [LX - 8.0, gy + 0.2, LZ + 1.0] },
-    { t: L[3].start + 0.6, pos: [LX + 6.0, gy + 4.6, LZ - 2.2], look: [LX - 14.0, gy + 0.8, LZ + 3.0] },
-    { t: P.to, pos: [LX + 6.8, gy + 5.4, LZ - 3.0], look: [LX - 30.0, gy + 3.0, LZ + 8.0] },
+    { t: L[1].start + 0.4, pos: [LX + 3.1, gy + 1.4, LZ - 0.2], look: [LX - 0.4, gy + 0.62, LZ] },
+    { t: L[2].start + 0.3, pos: [LX + 3.5, gy + 1.9, LZ - 0.6], look: [LX - 0.3, gy + 0.6, LZ + 0.05] },
+    { t: L[3].start + 0.8, pos: [LX + 4.0, gy + 2.4, LZ - 1.0], look: [LX - 1.2, gy + 0.7, LZ + 0.3] },
+    { t: P.to, pos: [LX + 4.5, gy + 2.9, LZ - 1.3], look: [LX - 2.2, gy + 0.9, LZ + 0.6] },
   ], { handheld: { amount: 0.8, seed: 81 }, fov: 46, aperture: 0.003 });
   const lines = wrap(L, 40);
   return valleyScene(P, {
@@ -32,7 +32,7 @@ export default (P) => {
     lamps: () => [1, 1, 1, 1, 1, 0, 0, 0, 0, 0],
     uniforms: { uLedge: new Float32Array([LX, LZ, Math.PI / 2, 0]), uHomes: 1 },
     words(ctx, t, col) {
-      surface(ctx, 0, LEDGE_W, LEDGE_H, (c, b) => inscribe(c, t, lines, { x: b.x + 50, y: b.y + 30, w: b.w - 100, h: b.h - 60 }, { size: 62, leading: 1.25, valign: 'middle' }));
+      surface(ctx, 0, LEDGE_W, LEDGE_H, (c, b) => inscribe(c, t, lines, { x: b.x + 170, y: b.y + b.h * 0.2, w: b.w - 340, h: b.h * 0.58 }, { size: 42, leading: 1.5, valign: 'middle' }));
     },
     post: () => grade({ exposure: 1.7 }),
     finish: () => FINISH,

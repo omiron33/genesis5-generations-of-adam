@@ -31,7 +31,7 @@ export default (P) => {
   const keys = [];
   for (let t = P.from; t <= P.to + 0.01; t += (P.to - P.from) / 8) {
     const fx = front(t);
-    keys.push({ t, pos: [fx + 0.25, 1.4 + 0.08 * Math.sin(t * 0.37), 2.45 - 0.12 * Math.sin(t * 0.21)], look: [fx - 0.4, 1.42, 0.0] });
+    keys.push({ t, pos: [fx - 0.1, 1.45 + 0.06 * Math.sin(t * 0.37), 1.95 - 0.1 * Math.sin(t * 0.21)], look: [fx - 0.5, 1.5, 0.0] });
   }
   const cam = track(keys, { handheld: { amount: 0.7, seed: 21, metres: 0.7 }, fov: 46, aperture: 0.006 });
   return hallScene(P, {
@@ -44,7 +44,7 @@ export default (P) => {
       draw(ctx, t) {
         C.lines.forEach((l, k) => {
           const cx = lampX(k + 2), y = k % 2 ? 1.36 : 1.62;
-          inscribe(ctx, t, [{ words: l.words }], { x: wx(cx - 0.62), y: wy(y + 0.12), w: 1.24 * PX, h: 200 }, { size: 112 });
+          inscribe(ctx, t, [{ words: l.words }], { x: wx(cx - 0.66), y: wy(y + 0.16), w: 1.32 * PX, h: 260 }, { size: 150 });
         });
       },
     },

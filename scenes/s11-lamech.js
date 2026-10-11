@@ -29,7 +29,7 @@ export default (P) => {
     { t: L[3].start + 1.4, pos: at(s8, 3.0, 0.4), look: on(s8, 0.0) },
     { t: L[4].start + 1.2, pos: [PX + 4.0, py + 1.5, PZ - 5.0], look: [PX + 1.0, py + 0.1, PZ - 2.0] },
     { t: L[6].start + 0.5, pos: [PX + 2.8, py + 1.6, PZ - 6.2], look: [PX, py + 0.1, PZ - 2.0] },
-    { t: P.to, pos: [PX + 2.2, py + 1.5, PZ - 5.6], look: [PX - 0.4, py + 0.25, PZ - 0.8] },
+    { t: P.to, pos: [PX + 1.6, py + 1.2, PZ - 3.9], look: [PX - 0.3, py + 0.5, PZ - 1.25] },
   ], { handheld: { amount: 0.9, seed: 101 }, fov: 46, aperture: 0.004 });
   // ground text beside the plough: 4 lines, across the field looking +z-ish; x right-to-left
   const rect = [PX + 2.6, PZ - 4.4, PX - 2.2, PZ - 0.6];
